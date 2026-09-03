@@ -66,7 +66,9 @@ user-management-api
 ├── pom.xml
 └── README.md
 
-🏗️ Architecture
+---
+
+##🏗️ Architecture
 
 The project follows a simple layered architecture:
 
@@ -84,7 +86,9 @@ Repository
        ▼
 MySQL Database
 
-🗄️ Database Configuration
+---
+
+##🗄️ Database Configuration
 
 Create a MySQL database:
 
@@ -105,7 +109,9 @@ server.port=8080
 
 Replace YOUR_PASSWORD with your MySQL password.
 
-👤 User Entity
+---
+
+##👤 User Entity
 
 Example user fields:
 
@@ -116,7 +122,9 @@ age
 
 The User entity is mapped to a MySQL table using JPA.
 
-🔗 API Endpoints
+---
+
+##🔗 API Endpoints
 1. Create User
 
 POST
@@ -199,7 +207,9 @@ Example:
 Response
 User deleted successfully
 
-▶️ How to Run the Project
+---
+
+##▶️ How to Run the Project
 Step 1: Clone the repository
 git clone https://github.com/Poornima-2011/user-management-api.git
 Step 2: Open the project
@@ -232,7 +242,9 @@ The application will start at:
 
 http://localhost:8080
 
-🧪 Testing with Postman
+---
+
+##🧪 Testing with Postman
 
 You can test all APIs using Postman.
 
@@ -247,8 +259,10 @@ PUT http://localhost:8080/api/users/1
 Delete
 DELETE http://localhost:8080/api/users/1
 
-GitHub
-🔮 Future Improvements
+
+---
+
+##🔮 Future Improvements
 
 The project can be extended with:
 
@@ -261,6 +275,8 @@ Swagger/OpenAPI documentation
 Unit testing with JUnit and Mockito
 Docker deployment
 
-👩‍💻 Author
+---
+
+##👩‍💻 Author
 
 Poornima
