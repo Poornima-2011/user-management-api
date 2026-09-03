@@ -1,8 +1,8 @@
 # User Management API
 
-A simple **User Management REST API** built using **Java, Spring Boot, Spring Data JPA, and MySQL**.
+A simple RESTful User Management API built using Java, Spring Boot, Spring Data JPA, and MySQL.
 
-This project demonstrates how to build RESTful APIs with a layered architecture and handle exceptions globally.
+This project demonstrates CRUD operations, layered architecture, database integration, and global exception handling.
 
 ---
 
@@ -11,13 +11,14 @@ This project demonstrates how to build RESTful APIs with a layered architecture 
 - Create a new user
 - Get all users
 - Get user by ID
-- Update user details
+- Update user
 - Delete user
-- Global exception handling
-- User not found exception handling
 - MySQL database integration
 - Spring Data JPA
-- RESTful API architecture
+- RESTful APIs
+- Global exception handling
+- Custom User Not Found exception
+- Postman API testing
 
 ---
 
@@ -27,9 +28,9 @@ This project demonstrates how to build RESTful APIs with a layered architecture 
 - Spring Boot
 - Spring Web
 - Spring Data JPA
+- Hibernate
 - MySQL
 - Maven
-- REST API
 - Postman
 - Git & GitHub
 
@@ -64,37 +65,52 @@ user-management-api
 │   └── application.properties
 │
 ├── pom.xml
+├── .gitignore
 └── README.md
+🏗️ Architecture
 
----
-
-##🏗️ Architecture
-
-The project follows a simple layered architecture:
+The project follows a layered architecture:
 
 Client / Postman
        │
        ▼
+ Controller
+       │
+       ▼
+  Service
+       │
+       ▼
+ Repository
+       │
+       ▼
+ MySQL Database
 Controller
-       │
-       ▼
+
+Handles HTTP requests and exposes REST API endpoints.
+
 Service
-       │
-       ▼
+
+Contains the business logic of the application.
+
 Repository
-       │
-       ▼
-MySQL Database
 
----
+Uses Spring Data JPA to communicate with the database.
 
-##🗄️ Database Configuration
+Entity
 
-Create a MySQL database:
+Represents the User table in the MySQL database.
+
+Exception
+
+Handles application-specific exceptions and provides proper error responses.
+
+🗄️ Database Configuration
+
+Create the MySQL database:
 
 CREATE DATABASE user_management;
 
-Update your application.properties:
+Update application.properties:
 
 spring.application.name=user-management-api
 
@@ -109,22 +125,18 @@ server.port=8080
 
 Replace YOUR_PASSWORD with your MySQL password.
 
----
+👤 User Entity
 
-##👤 User Entity
-
-Example user fields:
+The User entity contains the following fields:
 
 id
 name
 email
 age
 
-The User entity is mapped to a MySQL table using JPA.
+The entity is mapped to a MySQL table using JPA annotations.
 
----
-
-##🔗 API Endpoints
+🔗 API Endpoints
 1. Create User
 
 POST
@@ -143,7 +155,6 @@ Example Response
     "email": "poornima@gmail.com",
     "age": 23
 }
-
 2. Get All Users
 
 GET
@@ -169,9 +180,7 @@ Example Response
 GET
 
 /api/users/{id}
-
-Example:
-
+Example
 /api/users/1
 Response
 {
@@ -185,9 +194,7 @@ Response
 PUT
 
 /api/users/{id}
-
-Example:
-
+Example
 /api/users/1
 Request Body
 {
@@ -200,21 +207,32 @@ Request Body
 DELETE
 
 /api/users/{id}
-
-Example:
-
+Example
 /api/users/1
 Response
 User deleted successfully
+⚠️ Exception Handling
 
----
+The project uses a custom exception:
 
-##▶️ How to Run the Project
-Step 1: Clone the repository
+UserNotFoundException
+
+If a user does not exist, for example:
+
+GET /api/users/100
+
+the application handles the exception using:
+
+@RestControllerAdvice
+
+The GlobalExceptionHandler provides a proper error response instead of returning an internal server error.
+
+▶️ How to Run the Project
+Step 1: Clone the Repository
 git clone https://github.com/Poornima-2011/user-management-api.git
-Step 2: Open the project
+Step 2: Open the Project
 
-Open the project in:
+Open the project using:
 
 IntelliJ IDEA
 Eclipse
@@ -225,58 +243,66 @@ Create the database:
 
 CREATE DATABASE user_management;
 
-Update the MySQL username and password in:
+Then update the MySQL username and password in:
 
 src/main/resources/application.properties
-Step 4: Run the application
+Step 4: Run the Application
 
 Run:
 
 UserManagementApplication.java
 
-Or using Maven:
+Or use Maven:
 
 mvn spring-boot:run
 
 The application will start at:
 
 http://localhost:8080
+🧪 Testing with Postman
 
----
+The APIs can be tested using Postman.
 
-##🧪 Testing with Postman
-
-You can test all APIs using Postman.
-
-Create
+Create User
 POST http://localhost:8080/api/users
-Get All
+Get All Users
 GET http://localhost:8080/api/users
-Get By ID
+Get User By ID
 GET http://localhost:8080/api/users/1
-Update
+Update User
 PUT http://localhost:8080/api/users/1
-Delete
+Delete User
 DELETE http://localhost:8080/api/users/1
+📚 Learning Outcomes
 
+Through this project, I practiced:
 
----
-
-##🔮 Future Improvements
+Java
+Spring Boot
+REST API development
+CRUD operations
+Spring Data JPA
+Hibernate
+MySQL integration
+Layered architecture
+Exception handling
+HTTP methods
+Postman API testing
+Maven
+Git and GitHub
+🔮 Future Improvements
 
 The project can be extended with:
 
 DTO pattern
+Input validation
 Pagination and sorting
-Search users by name/email
+Search users by name or email
 Spring Security
 JWT authentication
 Swagger/OpenAPI documentation
 Unit testing with JUnit and Mockito
 Docker deployment
-
----
-
-##👩‍💻 Author
+👩‍💻 Author
 
 Poornima
